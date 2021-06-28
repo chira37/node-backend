@@ -1,0 +1,1 @@
+DB_CONNECTION=mongodb+srv://test-user:Fj8kNyGDzU4KOGUE@cluster0.oig7q.mongodb.net/blog?retryWrites=true&w=majority
