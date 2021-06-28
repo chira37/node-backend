@@ -13,4 +13,6 @@ router.delete("/:postId", postController.deleteById);
 
 router.post("/", postController.add);
 
+router.put("/:postId", postController.update);
+
 module.exports = router;
