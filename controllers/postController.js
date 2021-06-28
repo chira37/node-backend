@@ -1,5 +1,4 @@
 const Post = require("../models/Post");
-const boom = require("@hapi/boom");
 
 const add = async (req, res) => {
     const post = new Post({
