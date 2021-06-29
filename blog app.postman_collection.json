@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9720f0be-d295-4c82-9d69-c8d578e104c0",
+		"_postman_id": "75a933f2-4d45-4e6b-a7ee-bfbdf5ebaec1",
 		"name": "blog app",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -10,6 +10,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"post -212\",\r\n    \"description\": \"description -1\",\r\n    \"userName\": \"user-1\",\r\n    \"postId\": \"id-12242\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:3000/posts",
 					"protocol": "http",
@@ -26,10 +35,27 @@
 		},
 		{
 			"name": "get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts"
+					]
+				}
 			},
 			"response": []
 		},
@@ -38,25 +64,67 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "http://localhost:3000/posts/post-11238",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"post-11238"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "deleteById",
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "http://localhost:3000/posts/post-11238",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"post-11238"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "update",
 			"request": {
-				"method": "GET",
+				"method": "PUT",
 				"header": [],
-				"url": null
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"post -212123\",\r\n    \"description\": \"description -1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/posts/post-11237",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"post-11237"
+					]
+				}
 			},
 			"response": []
 		}
