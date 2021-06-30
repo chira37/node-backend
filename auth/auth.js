@@ -11,10 +11,11 @@ passport.use(
         {
             usernameField: "email",
             passwordField: "password",
+            passReqToCallback: true,
         },
-        async (email, password, done) => {
+        async (req, email, password, done) => {
             try {
-                const user = await User.create({ email, password });
+                const user = await User.create({ email, password, userName: req.body.userName });
                 return done(null, user);
             } catch (error) {
                 done(error);
@@ -56,7 +57,7 @@ passport.use(
     new JWTstrategy(
         {
             secretOrKey: "TOP_SECRET",
-            jwtFromRequest: ExtractJWT.fromUrlQueryParameter("secret_token"),
+            jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
         },
         async (token, done) => {
             try {

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "75a933f2-4d45-4e6b-a7ee-bfbdf5ebaec1",
+		"_postman_id": "2cb5f1d3-6154-4b0b-97cc-22971b136f6c",
 		"name": "blog app",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"post -212\",\r\n    \"description\": \"description -1\",\r\n    \"userName\": \"user-1\",\r\n    \"postId\": \"id-12242\"\r\n}",
+					"raw": "{\r\n    \"title\": \"post-1\",\r\n    \"description\": \"description-1\",\r\n    \"userName\": \"user-1\",\r\n    \"postId\": \"post-11238\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -35,16 +35,9 @@
 		},
 		{
 			"name": "get",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://localhost:3000/posts",
 					"protocol": "http",
@@ -65,7 +58,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/posts/post-11238",
+					"raw": "http://localhost:3000/posts/post-11236",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -73,7 +66,7 @@
 					"port": "3000",
 					"path": [
 						"posts",
-						"post-11238"
+						"post-11236"
 					]
 				}
 			},
@@ -85,7 +78,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/posts/post-11238",
+					"raw": "http://localhost:3000/posts/post-11236",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -93,7 +86,7 @@
 					"port": "3000",
 					"path": [
 						"posts",
-						"post-11238"
+						"post-11236"
 					]
 				}
 			},
@@ -103,10 +96,16 @@
 			"name": "update",
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"post -212123\",\r\n    \"description\": \"description -1\"\r\n}",
+					"raw": "{\r\n    \"title\": \"post-fd\",\r\n    \"description\": \"description\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -123,6 +122,52 @@
 					"path": [
 						"posts",
 						"post-11237"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "example@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"login"
 					]
 				}
 			},
