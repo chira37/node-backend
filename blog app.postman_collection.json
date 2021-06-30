@@ -9,7 +9,13 @@
 			"name": "add",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"title\": \"post-1\",\r\n    \"description\": \"description-1\",\r\n    \"userName\": \"user-1\",\r\n    \"postId\": \"post-11238\"\r\n}",
@@ -76,9 +82,15 @@
 			"name": "deleteById",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{token}}",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:3000/posts/post-11236",
+					"raw": "http://localhost:3000/posts/post-11238",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -86,7 +98,7 @@
 					"port": "3000",
 					"path": [
 						"posts",
-						"post-11236"
+						"post-11238"
 					]
 				}
 			},
@@ -99,7 +111,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "",
+						"value": "bearer {{token}}",
 						"type": "text"
 					}
 				],
@@ -130,16 +142,57 @@
 		{
 			"name": "register",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "userName",
+							"value": "example1",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "example1@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:3000/user/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"signup"
+					]
 				}
 			},
 			"response": []
 		},
 		{
 			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = pm.response.json()\r",
+							"pm.globals.set(\"token\", result.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
