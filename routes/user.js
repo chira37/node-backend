@@ -24,7 +24,7 @@ router.post("/login", async (req, res, next) => {
                 const body = { _id: user._id, email: user.email };
                 const token = jwt.sign({ user: body }, process.env.JWT_TOKEN);
 
-                return res.json({ token, ...body });
+                return res.json({ token, user: { ...body } });
             });
         } catch (error) {
             return next(error);
