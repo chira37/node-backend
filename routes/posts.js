@@ -13,10 +13,10 @@ router.get("/", postController.getAll);
 
 router.get("/:postId", postController.getById);
 
-router.delete("/:postId", postController.deleteById);
+router.delete("/:postId", passport.authenticate("jwt", { session: false }), postController.deleteById);
 
 router.post("/", passport.authenticate("jwt", { session: false }), postController.add);
 
-router.put("/:postId",passport.authenticate("jwt", { session: false }), postController.update);
+router.put("/:postId", passport.authenticate("jwt", { session: false }), postController.update);
 
 module.exports = router;
