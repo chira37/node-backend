@@ -1,4 +1,5 @@
 const Post = require("../models/Post");
+const { body, validationResult } = require("express-validator");
 
 const add = async (req, res) => {
     const post = new Post({
@@ -22,10 +23,12 @@ const update = async (req, res) => {
             { postId: req.params.postId },
             { $set: { title: req.body.title, description: req.body.description } }
         );
+
         if (result.n === 1) {
             res.status(200).json({ message: "Successfully update the post" });
         } else {
-            res.status(400).json({ message: "Faild to update the post" });
+            const error = new Error("Faild to update the post");
+            throw error;
         }
     } catch (error) {
         res.status(400).send({ message: error.message });
@@ -56,7 +59,8 @@ const deleteById = async (req, res) => {
         if (result.n === 1) {
             res.status(200).json({ message: "Successfully deleted the post" });
         } else {
-            res.status(400).json({ message: "Faild to delete the post" });
+            const error = new Error("Faild to delete the post");
+            throw error;
         }
     } catch (error) {
         res.status(500).json({ message: error.message });

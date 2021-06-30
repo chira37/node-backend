@@ -7,7 +7,7 @@ const postSchema = monogoose.Schema({
     },
     description: {
         type: String,
-        required: true,
+        //required: true,
     },
     userName: {
         type: String,
