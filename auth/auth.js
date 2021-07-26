@@ -9,14 +9,25 @@ passport.use(
     "signup",
     new localStrategy(
         {
-            usernameField: "email",
+            usernameField: "username",
             passwordField: "password",
             passReqToCallback: true,
         },
-        async (req, email, password, done) => {
+        async (req, username, password, done) => {
             try {
-                const user = await User.create({ email, password, userName: req.body.userName });
-                return done(null, user);
+                const _user = {
+                    username,
+                    password,
+                };
+                const user = new User(_user);
+
+                const { error } = user.joiValidate(_user);
+                if (error) {
+                    throw new Error(error.details[0].message);
+                }
+
+                const res = await user.save();
+                return done(null, res);
             } catch (error) {
                 done(error);
             }
@@ -25,29 +36,29 @@ passport.use(
 );
 
 passport.use(
-    "login",
+    "signin",
     new localStrategy(
         {
-            usernameField: "email",
+            usernameField: "username",
             passwordField: "password",
         },
-        async (email, password, done) => {
+        async (username, password, done) => {
             try {
-                const user = await User.findOne({ email });
+                const user = await User.findOne({ username });
 
                 if (!user) {
                     return done(null, false, { message: "User not found" });
                 }
 
                 const validate = await user.isValidPassword(password);
-
                 if (!validate) {
                     return done(null, false, { message: "Wrong Password" });
                 }
 
                 return done(null, user, { message: "Logged in Successfully" });
             } catch (error) {
-                done(error);
+                console.log(error);
+                done(null, false, { message: "Internal error: passport authentication" });
             }
         }
     )
